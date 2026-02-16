@@ -11,6 +11,29 @@ button.center{
 }
 
 #title{
-	color:red;
+	color:white;
 	text-align: center;
+	font-size: 80px;
+	text-transform: uppercase;
+}
+body{
+	background-color: #2E2E2E;
+}
+button{
+	background-color: white;
+	cursor: pointer;
+	border-radius: 15px;
+	box-shadow: 8px 8px #0088B0;
+}
+button:hover{
+	background-color: #0088B0;
+    transition: background-color 600ms linear;
+	color: white;
+}
+button:active{
+	background-color: white;
+	color: black;
+}
+h1{
+	text-shadow: 3px 3px #0088B0;
 }
