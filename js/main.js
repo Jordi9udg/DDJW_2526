@@ -1,7 +1,8 @@
 addEventListener('load', function() {
     document.getElementById('play').addEventListener('click', 
     function(){
-        alert("Comença la partida");
+        let person = prompt("Si us plau digues el teu nom", "Jose García");
+        console.log(person);
     });
 
     document.getElementById('options').addEventListener('click', 
