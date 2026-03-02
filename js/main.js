@@ -1,23 +1,21 @@
-addEventListener('load', function() {
-    document.getElementById('play').addEventListener('click', 
-    function(){
+$(document).ready(function() {
+
+    $('#play').click(function() {
         let person = prompt("Si us plau digues el teu nom", "Jose García");
         console.log(person);
         window.location.assign("./html/game.html");
     });
 
-    document.getElementById('options').addEventListener('click', 
-    function(){
+    $('#options').click(function() {
         console.error("Opció no implementada");
     });
 
-    document.getElementById('saves').addEventListener('click', 
-    function(){
+    $('#saves').click(function() {
         console.error("Opció no implementada");
     });
 
-    document.getElementById('exit').addEventListener('click', 
-    function(){
+    $('#exit').click(function() {
         console.warn("No es pot sortir!");
     });
+
 });
