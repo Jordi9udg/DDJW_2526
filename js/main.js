@@ -1,6 +1,7 @@
 addEventListener('load', function() {
     document.getElementById('play').addEventListener('click', 
     function(){
+        sessionStorage.removeItem('load');
         window.location.assign("./html/game.html");
     });
 
@@ -11,7 +12,12 @@ addEventListener('load', function() {
 
     document.getElementById('saves').addEventListener('click', 
     function(){
-        console.error("Opció no implementada");
+        if (!localStorage.save) {
+            alert("No hi ha cap partida a carregar");
+            return;
+        }
+        sessionStorage.load = localStorage.save;
+        window.location.assign("./html/game.html");
     });
 
     document.getElementById('exit').addEventListener('click', 

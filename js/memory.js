@@ -26,23 +26,39 @@ var game = {
         this.states[idx] = StateCard.DISABLE;
     },
     select: function(){
-        this.items = resources.slice();          
-        shuffe(this.items);                      
-        this.items = this.items.slice(0, this.pairs); 
-        this.items = this.items.concat(this.items);        
-        shuffe(this.items);
+        if (sessionStorage.load){ // Carreguem partida
+            let toLoad = JSON.parse(sessionStorage.load);
+            this.items = toLoad.items;
+            this.states = toLoad.states;
+            this.lastCard = toLoad.lastCard;
+            this.score = toLoad.score;
+            this.pairs = toLoad.pairs;
+        }
+        else{ // Nova partida
+            this.items = resources.slice();          
+            shuffe(this.items);                      
+            this.items = this.items.slice(0, this.pairs); 
+            this.items = this.items.concat(this.items);        
+            shuffe(this.items);
+            this.states = new Array(this.items.length);
+        }
     },
     start: function(){
         this.items.forEach((_,indx)=>{
-            setTimeout(()=>{
-                this.states.push(StateCard.DISABLE);
+            if (this.states[indx] === StateCard.DISABLE ||
+                this.states[indx] === StateCard.DONE){
                 this.ready++;
-                this.goBack(indx);
-            }, 1000 + 100 * indx);
+            }
+            else{
+                setTimeout(()=>{
+                    this.ready++;
+                    this.goBack(indx);
+                }, 1000 + 100 * indx);
+            }
         });
     },
     click: function(indx){
-        if (!this.StateCard[indx] || this.ready < this.items.length) return;
+        if (!this.states[indx] || this.ready < this.items.length) return;
         this.goFront(indx);
         if (this.lastCard === null) this.lastCard = indx; // Primera carta clicada
         else{ // Teníem carta prèvia
